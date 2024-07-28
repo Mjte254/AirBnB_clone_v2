@@ -1,15 +1,18 @@
 #!/usr/bin/python3
-"""This module instantiates an object of class FileStorage
-    Instatiates the database storage engine (DBStorage) when the env
-    var "HBNB_TYPE_STORAGE" is set to 'db'
 """
+Initialize the models package
+"""
+
 from os import getenv
 
+storage_t = getenv("HBNB_TYPE_STORAGE")
 
-if getenv("HBNB_TYPE_STORAGE") == "db":
-    from models.engine.db_storage import DBStorage
-    storage = DBStorage()
+if storage_t == "db":
+   from models.engine.db_storage import DBStorage
+   storage = DBStorage()
 else:
     from models.engine.file_storage import FileStorage
     storage = FileStorage()
+
 storage.reload()
+                    
